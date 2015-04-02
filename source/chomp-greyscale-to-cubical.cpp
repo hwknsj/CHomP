@@ -13,11 +13,12 @@ int main ( int argc, char * argv [] ) {
   CImgDisplay main_disp(image,"Image",0);
   CImg<double> thresimage(image.width(),image.height(),1,1,0);
   
-  int threshold = atoi(argv[2]);
-  std::ofstream outfile ( argv[3] );
+  //int threshold = atoi(argv[2]);
+  int median = image.median();
+  std::ofstream outfile ( argv[2] );
   for (int i=0;i<image.width();i++){
     for (int j=0;j<image.height();j++) {
-      if ( image(i,j,0,0) > threshold ) {
+      if ( image(i,j,0,0) > median ) { // change to median or threshold for different thresholding.
 	outfile << "(" << i << ", " << j << ")\n";
 	thresimage(i,j,0,0)=255;
       }
@@ -26,7 +27,8 @@ int main ( int argc, char * argv [] ) {
   outfile.close ();
   //for (int k=0;k<3;k++) darkimage(i,j,0,k)=image(i,j,0,k)/2;
   CImgDisplay dark_disp (thresimage,"Thresholded Image",0); 
-  while (!main_disp.is_closed())
-    main_disp.wait();
+  //CImgDisplay dark_disp (thresimage,"Thresholded Image",0);
+  //while (!main_disp.is_closed())
+  //  main_disp.wait();
   return 0;
 }
