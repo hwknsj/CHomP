@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-// commandline arguments: inputfile threshold outputfile
+// commandline arguments: inputfile outputfile
 #include "CImg.h"
 using namespace cimg_library;
 
@@ -26,7 +26,6 @@ int main ( int argc, char * argv [] ) {
   }
   outfile.close ();
   //for (int k=0;k<3;k++) darkimage(i,j,0,k)=image(i,j,0,k)/2;
-  CImgDisplay dark_disp (thresimage,"Thresholded Image",0); 
   //CImgDisplay dark_disp (thresimage,"Thresholded Image",0);
   //while (!main_disp.is_closed())
   //  main_disp.wait();
